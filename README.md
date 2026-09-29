@@ -1,3 +1,114 @@
+ENGLISH:
+
+# Contract Automation with Python
+
+A Python project developed to automate the filling and generation of contracts in `.docx` format.
+
+The application receives user data through the terminal, validates some information, fills out a contract template with the provided data, and automatically saves the generated document in a specific folder.
+
+## Objective
+
+The objective of this project is to practice Python by developing a simple automation that can help reduce repetitive document-filling tasks in a business environment.
+
+## Features
+
+- Collects data through the terminal;
+- Basic name validation;
+- CPF validation;
+- RG validation;
+- ZIP code validation;
+- Automatic filling of a `.docx` template;
+- Placeholder replacement using a dictionary;
+- Automatic creation of the generated contracts folder;
+- Automatic file name generation;
+- Removal of invalid characters from file names;
+- Displays the path where the contract was saved.
+
+## Technologies Used
+
+- Python
+- python-docx
+- Microsoft Word
+
+## Project Structure
+
+```text
+Automation/
+└── Contracts/
+    ├── modelo.docx
+    ├── visualizar.py
+    ├── README.md
+    └── Contratos Gerados/
+```
+
+The `Contratos Gerados` folder will be created automatically after the first contract is generated.
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/HSMERCENARIO/AutoContract
+```
+
+Navigate to the project folder:
+
+```bash
+cd AutoContract
+```
+
+Install the required library:
+
+```bash
+pip install python-docx
+```
+
+## How to Run
+
+Run the Python file:
+
+```bash
+python visualizar.py
+```
+
+The program will request the required information through the terminal.
+
+After the information is provided, the contract will be automatically saved inside the:
+
+```text
+Contratos Gerados/
+```
+
+folder.
+
+## Example
+
+During execution, the program requests information such as:
+
+```text
+Enter your full name:
+Enter the job title:
+Enter the RG:
+Enter the RG issuing authority:
+Enter the CPF:
+Enter the address:
+Enter the address number:
+Enter the neighborhood:
+Enter the city:
+Enter the state:
+Enter the ZIP code:
+```
+
+After entering the required information, the program automatically generates the contract using the `modelo.docx` template.
+
+## Author
+
+Developed by Kauã as a project to practice Python and automate repetitive tasks.
+
+
+
+🇧🇷 PORTUGUÊS:
+
 # Automação de Contratos com Python
 
 Projeto desenvolvido em Python para automatizar o preenchimento e a geração de contratos em formato `.docx`.
