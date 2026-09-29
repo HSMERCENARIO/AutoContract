@@ -38,11 +38,20 @@ def pedir_cargo():
 
         print("O cargo não pode ficar vazio. Tente novamente.")
 
+def pedir_RG():
+    while True:
+        RG = input("Digite o RG: ").strip()
+
+        RG_numeros = RG.replace(".","").replace("-","")
+
+        if RG_numeros.isdigit():
+            return RG 
+        print("Digite um RG válido!")
 
 
 NOME = pedir_nome()
 CARGO = pedir_cargo()
-RG = input("Digite o RG com pontuação: ")
+RG = pedir_RG()
 ORG = input("Digite o orgão emissor do RG: ")
 CPF = pedir_cpf()
 ENDR = input("Digite o endereço: ")
@@ -53,89 +62,30 @@ ESTADO = input("Digite o estado(Ex:SP): ")
 CEP =  input("Digite o cep: ")
 DATA = data
 
-for paragrafo in doc.paragraphs:
-    if "{{NOME}}" in paragrafo.text:
-        paragrafo.text = paragrafo.text.replace(
-            "{{NOME}}",
-            NOME
-        )
+campos = {
+    "{{NOME}}": NOME,
+    "{{CARGO}}": CARGO,
+    "{{RG}}": RG,
+    "{{ORG}}": ORG,
+    "{{CPF}}": CPF,
+    "{{ENDR}}": ENDR,
+    "{{NUMERO}}": NUMERO,
+    "{{BAIRRO}}": BAIRRO,
+    "{{CIDADE}}": CIDADE,
+    "{{ESTADO}}": ESTADO,
+    "{{CEP}}": CEP,
+    "{{DATA}}": DATA
+}
 
 for paragrafo in doc.paragraphs:
-    if "{{CARGO}}" in paragrafo.text:
-        paragrafo.text = paragrafo.text.replace(
-            "{{CARGO}}",
-            CARGO
-        )
+    for campo, valor in campos.items():
+        if campo in paragrafo.text:
+            paragrafo.text = paragrafo.text.replace(
+                campo,
+                valor
+            )
 
-for paragrafo in doc.paragraphs:
-    if "{{RG}}" in paragrafo.text:
-        paragrafo.text = paragrafo.text.replace(
-            "{{RG}}",
-            RG
-        )
 
-for paragrafo in doc.paragraphs:
-    if "{{ORG}}" in paragrafo.text:
-        paragrafo.text = paragrafo.text.replace(
-            "{{ORG}}",
-            ORG
-        )
-
-for paragrafo in doc.paragraphs:
-    if "{{CPF}}" in paragrafo.text:
-        paragrafo.text = paragrafo.text.replace(
-            "{{CPF}}",
-            CPF
-        )
-
-for paragrafo in doc.paragraphs:
-    if "{{ENDR}}" in paragrafo.text:
-        paragrafo.text = paragrafo.text.replace(
-            "{{ENDR}}",
-            ENDR
-        )
-
-for paragrafo in doc.paragraphs:
-    if "{{NUMERO}}" in paragrafo.text:
-        paragrafo.text = paragrafo.text.replace(
-            "{{NUMERO}}",
-            NUMERO
-        )
-
-for paragrafo in doc.paragraphs:
-    if "{{BAIRRO}}" in paragrafo.text:
-        paragrafo.text = paragrafo.text.replace(
-            "{{BAIRRO}}",
-            BAIRRO
-        )
-
-for paragrafo in doc.paragraphs:
-    if "{{CIDADE}}" in paragrafo.text:
-        paragrafo.text = paragrafo.text.replace(
-            "{{CIDADE}}",
-            CIDADE
-        )
-
-for paragrafo in doc.paragraphs:
-    if "{{ESTADO}}" in paragrafo.text:
-        paragrafo.text = paragrafo.text.replace(
-            "{{ESTADO}}",
-            ESTADO
-        )
-
-for paragrafo in doc.paragraphs:
-    if "{{CEP}}" in paragrafo.text:
-        paragrafo.text = paragrafo.text.replace(
-            "{{CEP}}",
-            CEP
-        )
-
-for paragrafo in doc.paragraphs:
-    if "{{DATA}}" in paragrafo.text:
-        paragrafo.text = paragrafo.text.replace(
-            "{{DATA}}",
-            DATA
-        )
 
 
 
