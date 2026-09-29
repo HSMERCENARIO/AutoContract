@@ -1,5 +1,12 @@
 from docx import Document
 import os
+import datetime
+import locale
+
+locale.setlocale(locale.LC_TIME, 'pt_BR.utf8')
+data_HOJE = datetime.date.today()
+data = data_HOJE.strftime('%d de %B de %Y')
+
 doc = Document("modelo.docx")
 
 def pedir_nome():
@@ -11,23 +18,53 @@ def pedir_nome():
 
         print("O nome não pode ficar vazio. Tente novamene.")
 
+def pedir_cpf():
+    while True:
+        CPF = input("Digite o CPF: ").strip()
+
+        CPF_numeros = CPF.replace(".","").replace("-","")
+
+        if CPF_numeros.isdigit() and len(CPF_numeros) == 11:
+            return CPF
+
+        print("CPF inválido. Digite um CPF com 11 números.")
+
+def pedir_cargo():
+    while True:
+        cargo = input("Digite o cargo: ").strip()
+
+        if cargo:
+            return cargo
+
+        print("O cargo não pode ficar vazio. Tente novamente.")
+
+
 
 NOME = pedir_nome()
+CARGO = pedir_cargo()
 RG = input("Digite o RG com pontuação: ")
 ORG = input("Digite o orgão emissor do RG: ")
-CPF = input("Digite o CPF com pontuação: ")
+CPF = pedir_cpf()
 ENDR = input("Digite o endereço: ")
 NUMERO = input("Digite o numero do endereço: ")
 BAIRRO = input("Digite o bairro: ")
 CIDADE = input("Digite a cidade: ")
 ESTADO = input("Digite o estado(Ex:SP): ")
 CEP =  input("Digite o cep: ")
+DATA = data
 
 for paragrafo in doc.paragraphs:
     if "{{NOME}}" in paragrafo.text:
         paragrafo.text = paragrafo.text.replace(
             "{{NOME}}",
             NOME
+        )
+
+for paragrafo in doc.paragraphs:
+    if "{{CARGO}}" in paragrafo.text:
+        paragrafo.text = paragrafo.text.replace(
+            "{{CARGO}}",
+            CARGO
         )
 
 for paragrafo in doc.paragraphs:
@@ -93,6 +130,13 @@ for paragrafo in doc.paragraphs:
             CEP
         )
 
+for paragrafo in doc.paragraphs:
+    if "{{DATA}}" in paragrafo.text:
+        paragrafo.text = paragrafo.text.replace(
+            "{{DATA}}",
+            DATA
+        )
+
 
 
 def limpar_nome_arquivo(NOME):
@@ -101,9 +145,9 @@ def limpar_nome_arquivo(NOME):
     for caracteres in caracteres_proibidos:
         NOME = NOME.replace(caracteres, "")
 
-        NOME = NOME.replace(" ", "_")
+    NOME = NOME.replace(" ", "_")
 
-        return NOME
+    return NOME
 
 pasta = "Contratos Gerados"
 
