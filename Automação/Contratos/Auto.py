@@ -1,5 +1,3 @@
-NOME = input("Digite o nome: ")
+nome = input("Digite um nome: ")
 
-print("Nome informado: ", NOME)
-
-print("Quantidade de caracteres: ", len(NOME))
+nome_arquivo = nome.replace(" ","_")

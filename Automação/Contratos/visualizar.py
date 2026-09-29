@@ -1,10 +1,10 @@
 from docx import Document
-
+import os
 doc = Document("modelo.docx")
 
 NOME = input("Digite o Nome completo: ")
-RG = input("Digite o RG: ")
-ORG = input("Digite o orgão emissor do RG com pontuação: ")
+RG = input("Digite o RG com pontuação: ")
+ORG = input("Digite o orgão emissor do RG: ")
 CPF = input("Digite o CPF com pontuação: ")
 ENDR = input("Digite o endereço: ")
 NUMERO = input("Digite o numero do endereço: ")
@@ -83,6 +83,29 @@ for paragrafo in doc.paragraphs:
             CEP
         )
 
+
+
+def limpar_nome_arquivo(NOME):
+    caracteres_proibidos = '\\/:*?"<>|'
+
+    for caracteres in caracteres_proibidos:
+        NOME = NOME.replace(caracteres, "")
+
+        NOME = NOME.replace(" ", "_")
+
+        return NOME
+
+pasta = "Contratos Gerados"
+
+nome_limpo = limpar_nome_arquivo(NOME)
+
+nome_arquivo = f"Contrato_{nome_limpo}.docx"
+
+os.makedirs(pasta, exist_ok=True)
+
+caminho_arquivo = os.path.join(pasta,nome_arquivo)
+
+doc.save(caminho_arquivo)
+
 print("Contrato preenchido com sucesso!")
-doc.save(f"Contrato_{NOME}.docx")
 print("Contrato criado com sucesso!")
