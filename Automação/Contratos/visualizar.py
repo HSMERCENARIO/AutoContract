@@ -2,7 +2,17 @@ from docx import Document
 import os
 doc = Document("modelo.docx")
 
-NOME = input("Digite o Nome completo: ")
+def pedir_nome():
+    while True:
+        NOME = input("Digite o nome completo: ").strip()
+
+        if NOME:
+            return NOME
+
+        print("O nome não pode ficar vazio. Tente novamene.")
+
+
+NOME = pedir_nome()
 RG = input("Digite o RG com pontuação: ")
 ORG = input("Digite o orgão emissor do RG: ")
 CPF = input("Digite o CPF com pontuação: ")
