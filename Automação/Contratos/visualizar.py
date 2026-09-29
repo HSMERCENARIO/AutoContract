@@ -48,6 +48,17 @@ def pedir_RG():
             return RG 
         print("Digite um RG válido!")
 
+def pedir_cep():
+    while True:
+        cep = input("Digite o CEP: ").strip()
+
+        cep_numeros = cep.replace("-", "")
+
+        if cep_numeros.isdigit() and len(cep_numeros) == 8:
+            return cep
+
+        print("CEP inválido. Digite um CEP com 8 números.")
+
 
 NOME = pedir_nome()
 CARGO = pedir_cargo()
@@ -59,7 +70,7 @@ NUMERO = input("Digite o numero do endereço: ")
 BAIRRO = input("Digite o bairro: ")
 CIDADE = input("Digite a cidade: ")
 ESTADO = input("Digite o estado(Ex:SP): ")
-CEP =  input("Digite o cep: ")
+CEP =  pedir_cep()
 DATA = data
 
 campos = {
@@ -111,5 +122,5 @@ caminho_arquivo = os.path.join(pasta,nome_arquivo)
 
 doc.save(caminho_arquivo)
 
-print("Contrato preenchido com sucesso!")
 print("Contrato criado com sucesso!")
+print(f"Arquivo salvo em: {caminho_arquivo}")
