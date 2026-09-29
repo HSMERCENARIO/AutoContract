@@ -1,5 +1,3 @@
-ENGLISH:
-
 # Contract Automation with Python
 
 A Python project developed to automate the filling and generation of contracts in `.docx` format.
